@@ -7,9 +7,10 @@ import "@smastrom/react-rating/style.css";
 import useMenu from "../../../Hooks/useMenu";
 
 const Reviews = () => {
-  const api = "http://localhost:5000/reviews";
-  const [reviews] = useMenu({ api });
-
+  const api = "/reviews";
+  const key = 'reviews';
+  const [reviews] = useMenu({ api , key });
+  console.log(reviews);
   return (
     <section>
       <SectionTitle

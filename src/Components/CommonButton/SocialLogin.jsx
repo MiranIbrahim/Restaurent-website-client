@@ -3,9 +3,10 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { axiosPublic } from "../../Hooks/useAxiosPublic";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SocialLogin = () => {
+  const axiosPublic = useAxiosPublic();
   const { googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
 

@@ -1,5 +1,4 @@
 import {
-  
   FaBook,
   FaCalendar,
   FaComment,
@@ -15,10 +14,15 @@ import { FiMenu } from "react-icons/fi";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../../../Hooks/useCart";
 import { FaEnvelope } from "react-icons/fa6";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+
+  const [isAdmin] = useAdmin();
+  // const isAdmin = true;
+  console.log("isAdmin", isAdmin);
+
   return (
     <div className="flex">
       {/* dashboard side bar */}
@@ -89,6 +93,12 @@ const Dashboard = () => {
                   My Bookings
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/dashboard/paymentHistory">
+                  <FaList></FaList>
+                  Payment History
+                </NavLink>
+              </li>
             </>
           )}
 
@@ -120,7 +130,7 @@ const Dashboard = () => {
         </ul>
       </div>
       {/* dashboard content */}
-      <div className="flex-1">
+      <div className="flex-1  ml-5">
         <Outlet></Outlet>
       </div>
     </div>

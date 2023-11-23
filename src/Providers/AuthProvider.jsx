@@ -10,12 +10,14 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../Firebase/firebase.config";
-import { axiosPublic } from "../Hooks/useAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
@@ -71,7 +73,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unSubscribe;
     };
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

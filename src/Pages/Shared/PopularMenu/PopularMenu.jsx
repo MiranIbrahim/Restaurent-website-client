@@ -5,8 +5,9 @@ import useMenu from "../../../Hooks/useMenu";
 import MenuItems from "./MenuItems";
 
 const PopularMenu = () => {
-  const api = 'menu.json';
-  const [menu] = useMenu({api});
+  const api = "/menu";
+  const key = 'menu';
+  const [menu] = useMenu({api,key});
   const popularItems = menu.filter((item) => item.category === "popular");
   return (
     <section>

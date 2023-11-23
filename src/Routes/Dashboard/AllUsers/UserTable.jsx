@@ -1,9 +1,11 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import { axiosSecure } from "../../../Hooks/useAxios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+
 
 const UserTable = ({ user, index, refetch }) => {
+  const axiosSecure = useAxiosSecure();
   const handleDelete = (user) => {
     Swal.fire({
       title: `Are you sure want to delete ${user.name}?`,

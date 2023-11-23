@@ -10,11 +10,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { axiosSecure } from "../../../Hooks/useAxios";
+
 import useCart from "../../../Hooks/useCart";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const FoodCart = ({ items }) => {
+  const axiosSecure = useAxiosSecure();
   const {user} = useContext(AuthContext);
   const [,refetch] = useCart();
   const navigate = useNavigate();

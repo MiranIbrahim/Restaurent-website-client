@@ -9,12 +9,13 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 const Order = () => {
-  const api = "http://localhost:5000/menu";
+  const api = "/menu";
+  const key = 'menu';
   const categories = ["salad", "pizza", "soups", "desserts", "drinks"];
   const {category} = useParams();
   const initialIndex = categories.indexOf(category);
   console.log(category);
-  const [menu] = useMenu({ api });
+  const [menu] = useMenu({ api, key });
   const drinks = menu.filter((item) => item.category === "drinks");
   const desserts = menu.filter((item) => item.category === "dessert");
   const pizzas = menu.filter((item) => item.category === "pizza");

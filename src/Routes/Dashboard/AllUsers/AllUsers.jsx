@@ -1,29 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import UserTable from "./UserTable";
-import useAxios from "../../../Hooks/useAxios";
-// import { axiosSecure } from "../../../Hooks/useAxios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+
+
 
 // probirghosh.ph@gmail.com
 
 const AllUsers = () => {
-    const axiosSecure = useAxios();
-    
+
+const axiosSecure = useAxiosSecure();
   const { refetch, data: users = [] } = useQuery({
     queryKey: ["users"],
-    queryFn: async() => {
-      const result = await axiosSecure.get("/users"
-    //   ,{
-    //     headers: {
-    //         authorization: `Bearer ${localStorage.getItem('access-token')}`,
-    //     }
-    //   }
-      );
+    queryFn: async () => {
+      const result = await axiosSecure.get("/users");
       console.log("result", result);
       return result.data;
     },
-  }
-  );
+  });
   return (
     <div>
       <SectionTitle
@@ -64,3 +58,4 @@ const AllUsers = () => {
 };
 
 export default AllUsers;
+

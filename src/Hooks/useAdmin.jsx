@@ -3,17 +3,20 @@ import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import useAxiosSecure from "./useAxiosSecure";
 
-const useCart = () => {
+
+
+const useAdmin = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const { refetch, data: cart = [] } = useQuery({
-    queryKey: ["cart", user?.email],
+  const { data: isAdmin, isPending : isLoading} = useQuery({
+    queryKey: [user?.email, "isAdmin"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/carts?email=${user.email}`);
-      return res.data;
+      const res = await axiosSecure.get(`/users/admin/${user.email}`);
+      console.log(res.data);
+      return res.data?.admin;
     },
   });
-  return [cart, refetch];
+  return [isAdmin, isLoading];
 };
 
-export default useCart;
+export default useAdmin;
