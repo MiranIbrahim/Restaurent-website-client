@@ -16,6 +16,8 @@ import ManageItems from "./Dashboard/ManageItems/ManageItems";
 import UpdateItems from "./Dashboard/UpdateItems/UpdateItems";
 import Payment from "./Dashboard/Payment/Payment";
 import PaymentHistory from "./Dashboard/Payment/PaymentHistory";
+import UserHome from "./Dashboard/UserHome/UserHome";
+import AdminHome from "./Dashboard/AdminHome/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +63,10 @@ export const router = createBrowserRouter([
         element: <Cart></Cart>,
       },
       {
+        path: "/dashboard/userHome",
+        element: <UserHome></UserHome>,
+      },
+      {
         path: "/dashboard/payment",
         element: <Payment></Payment>,
       },
@@ -83,6 +89,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
+      {
         path: "/dashboard/manageItems",
         element: (
           <AdminRoute>
@@ -97,8 +111,8 @@ export const router = createBrowserRouter([
             <UpdateItems></UpdateItems>
           </AdminRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`),
-        
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
       },
     ],
   },
